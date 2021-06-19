@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+   
+ <hibernate-mapping>  
+ 	<class name="es.uah.invaZoras.hibernate.pojo.Incidencia" table="incidencia"> 
+	             
+	    <id name="id_incidencia" column ="id_incidencia" type="int">  
+	     	<generator class="increment"/>  
+	    </id>
+	    
+	    <property name="fecha" column="fecha" type="java.sql.Timestamp"/> 
+	    <property name="fk_planta" column="fk_planta" type="int"/> 
+	    
+<!--	    <many-to-one name = "fk_planta" column = "fk_planta" 
+         class="es.uah.invaZoras.hibernate.pojo.Planta" not-null="true"/> -->
+	    
+	    <property name="valor_invasion" column="valor_invasion" type="short"/> 
+	    <property name="latitud" column="latitud" type="java.math.BigDecimal"/>
+	    <property name="longitud" column="longitud" type="java.math.BigDecimal"/>
+        <property name="imagen" column="imagen" type="binary"/>
+	    <property name="fk_usuario" column="fk_usuario" type="int"/> 
+<!-- 	    <many-to-one name = "fk_usuario" column = "fk_usuario" 
+         class="es.uah.invaZoras.hibernate.pojo.Usuario" not-null="true"/>  -->
+         
+	    <property name="admitida" column="admitida" type="boolean"/>         
+  	</class>      
+  	
+  	<class name="es.uah.invaZoras.hibernate.pojo.Planta" table="planta"> 
+	             
+	    <id name="id_planta" column ="id_planta" type="int">  
+	     	<generator class="increment"/>  
+	    </id>
+	    
+	    <property name="nombre" column="nombre" type="string"/>  
+	    <property name="descripcion" column="descripcion" type="string"/>
+	    <property name="pais_siglas" column="pais_siglas" type="string"/>
+	    <property name="pais" column="pais" type="string"/>              
+  	</class> 
+  	
+  	<class name="es.uah.invaZoras.hibernate.pojo.Usuario" table="usuario">  
+	    <id name="id_usuario" column ="id_usuario" type="int">  
+	     	<generator class="increment"/>  
+	    </id>  
+	             
+	    <property name="nombre" column="nombre" type="string"/>
+	    <property name="correo" column="correo" type="string"/>
+	    <property name="clave" column="clave" type="string"/>
+	    <property name="habilitado" column="habilitado" type="boolean"/>
+	    <property name="moderador" column="moderador" type="boolean"/>          
+  	</class>   
+ </hibernate-mapping>  

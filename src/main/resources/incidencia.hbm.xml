@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+   
+ <hibernate-mapping>  
+ 	<class name="es.uah.invaZoras.hibernate.pojo.Incidencia" table="incidencia"> 
+	             
+	    <id name="id_incidencia" column ="id_incidencia" type="int">  
+	     	<generator class="native"/>  
+	    </id>
+	    
+	    <property name="fecha" column="fecha" type="java.sql.TimeStamp"/> 
+	    
+	    <many-to-one name = "fk_planta" column = "fk_planta" 
+         class="es.uah.invaZoras.hibernate.pojo.Planta" not-null="true"/>
+	    
+	    <property name="valor_invasion" column="valor_invasion" type="short"/> 
+	    <property name="latitud" column="latitud" type="java.math.BigDecimal"/>
+	    <property name="longitud" column="longitud" type="java.math.BigDecimal"/>
+        <property name="imagen" column="imagen" type="byte[]"/>
+	    
+	    <many-to-one name = "fk_usuario" column = "fk_usuario" 
+         class="es.uah.invaZoras.hibernate.pojo.Usuario" not-null="true"/>
+         
+	    <property name="admitida" column="admitida" type="boolean"/>         
+  	</class>        
+ </hibernate-mapping>  
