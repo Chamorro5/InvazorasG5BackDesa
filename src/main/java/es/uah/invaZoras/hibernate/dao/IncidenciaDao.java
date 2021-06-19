@@ -32,6 +32,7 @@ public class IncidenciaDao {
 		return instance;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Incidencia conseguirIncidencia (int id) throws Exception {
 		
 		Session session = crearSession();
@@ -42,20 +43,11 @@ public class IncidenciaDao {
 		try {
 			tx = session.beginTransaction();
 			
-			Query<?> queryIncidencia = session.createSQLQuery("SELECT * FROM Incidencia WHERE id_incidencia = :param1");
-			queryIncidencia.setParameter("param1", id);
-			List<?> listIncidencia = queryIncidencia.list();
+			Query<Incidencia> queryIncidencia = session.createQuery("FROM Incidencia WHERE id_incidencia = ?0");
+			List<Incidencia> listIncidencia = queryIncidencia.setParameter(0, id).list();
+			
 			if (listIncidencia.size() == 1) {
-				incidencia = new Incidencia();
-				incidencia.setId_incidencia(((Incidencia) listIncidencia.get(0)).getId_incidencia());
-				incidencia.setFecha(((Incidencia) listIncidencia.get(0)).getFecha());
-				incidencia.setFk_planta(((Incidencia) listIncidencia.get(0)).getFk_planta());
-				incidencia.setFk_usuario(((Incidencia) listIncidencia.get(0)).getFk_usuario());
-				incidencia.setImagen(((Incidencia) listIncidencia.get(0)).getImagen());
-				incidencia.setValor_invasion(((Incidencia) listIncidencia.get(0)).getValor_invasion());
-				incidencia.setLatitud(((Incidencia) listIncidencia.get(0)).getLatitud());
-				incidencia.setLongitud(((Incidencia) listIncidencia.get(0)).getLongitud());
-				incidencia.setAdmitida(((Incidencia) listIncidencia.get(0)).isAdmitida());;
+				incidencia = listIncidencia.get(0);
 			} else {
 				incidencia = null;
 			}
@@ -71,6 +63,7 @@ public class IncidenciaDao {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Incidencia> conseguirIncidencias () throws Exception {
 		
 		Session session = crearSession();
@@ -81,21 +74,8 @@ public class IncidenciaDao {
 		try {
 			tx = session.beginTransaction();
 			
-			List incidencias = session.createQuery("FROM Incidencia").list();
-			for (Iterator iterator = incidencias.iterator(); iterator.hasNext();){
-				Object it = iterator.next();
-				Incidencia incidencia = new Incidencia();
-				incidencia.setId_incidencia(((Incidencia) it).getId_incidencia());
-				incidencia.setFecha(((Incidencia) it).getFecha());
-				incidencia.setFk_planta(((Incidencia) it).getFk_planta());
-				incidencia.setFk_usuario(((Incidencia) it).getFk_usuario());
-				incidencia.setImagen(((Incidencia) it).getImagen());
-				incidencia.setValor_invasion(((Incidencia) it).getValor_invasion());
-				incidencia.setLatitud(((Incidencia) it).getLatitud());
-				incidencia.setLongitud(((Incidencia) it).getLongitud());
-				incidencia.setAdmitida(((Incidencia) it).isAdmitida());
-				listIncidencia.add(incidencia);
-			}
+			List<Incidencia> incidencias = session.createQuery("FROM Incidencia").list();
+			listIncidencia.addAll(incidencias);
 			
 			tx.commit();
 		} catch (HibernateException e) {
@@ -153,6 +133,23 @@ public class IncidenciaDao {
 		try {
 			tx = session.beginTransaction();
 			session.delete(incidencia);
+			tx.commit();
+		} catch (HibernateException e) {
+			if(tx!=null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	public void actualizarIncidencia (Incidencia incidencia) {
+		Session session = crearSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			session.update(incidencia);
 			tx.commit();
 		} catch (HibernateException e) {
 			if(tx!=null)

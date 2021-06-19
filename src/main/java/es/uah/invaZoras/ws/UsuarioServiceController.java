@@ -17,13 +17,13 @@ public class UsuarioServiceController {
 	
 	
 	 @RequestMapping(value = "/usuario/{id}", method = RequestMethod.DELETE)
-	   public ResponseEntity<Object> delete(@PathVariable("id") int id) { 
+	   public ResponseEntity<Object> eliminarUsuario(@PathVariable("id") int id) { 
 	      UsuarioSrv.getInstance().eliminarUsuario(id);
 	      return new ResponseEntity<>("Usuario satisfactoriamente eliminado.", HttpStatus.OK);
 	   }
 	   
 	   @RequestMapping(value = "/usuario/{id}", method = RequestMethod.PUT)
-	   public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Usuario usuario) { 
+	   public ResponseEntity<Object> actualizarUsuario(@PathVariable("id") String id, @RequestBody Usuario usuario) { 
 	      UsuarioSrv.getInstance().actualizarUsuario(usuario);
 	      return new ResponseEntity<>("Usuario satisfactoriamente actualizado.", HttpStatus.OK);
 	   }

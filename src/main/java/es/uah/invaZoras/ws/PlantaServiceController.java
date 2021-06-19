@@ -20,25 +20,25 @@ public class PlantaServiceController {
 	
 	
 	 @RequestMapping(value = "/planta/{id}", method = RequestMethod.DELETE)
-	   public ResponseEntity<Object> delete(@PathVariable("id") int id) { 
+	   public ResponseEntity<Object> eliminarPlanta(@PathVariable("id") int id) { 
 		   PlantasSrv.getInstance().eliminarPlanta(id);
 	       return new ResponseEntity<>("Planta satisfactoriamente eliminada.", HttpStatus.OK);
 	   }
 	   
 	   @RequestMapping(value = "/planta/{id}", method = RequestMethod.PUT)
-	   public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Planta planta) { 
+	   public ResponseEntity<Object> actualizarPlantas(@PathVariable("id") String id, @RequestBody Planta planta) { 
 		   PlantasSrv.getInstance().actualizarPlanta(planta);
 		   return new ResponseEntity<>("Planta satisfactoriamente actualizada.", HttpStatus.OK);
 	   }
 	   
 	   @RequestMapping(value = "/planta", method = RequestMethod.POST)
-	   public ResponseEntity<Object> crearUsuario(@RequestBody Planta usuario) {
+	   public ResponseEntity<Object> crearPlanta(@RequestBody Planta usuario) {
 		   PlantasSrv.getInstance().insertarPlanta(usuario);
 	      return new ResponseEntity<>("Planta satisfactoriamente creada.", HttpStatus.CREATED);
 	   }
 	   
 	   @RequestMapping(value = "/planta")
-	   public ResponseEntity<Object> recuperarUsuarios() {
+	   public ResponseEntity<Object> recuperarPlantas() {
 	      try {
 			return new ResponseEntity<>(PlantasSrv.getInstance().conseguirListaPlantas(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -47,7 +47,7 @@ public class PlantaServiceController {
 	   }
 	   
 	   @RequestMapping(value = "/planta/{id}")
-	   public ResponseEntity<Object> recuperarUsuario(@PathVariable int id) {
+	   public ResponseEntity<Object> recuperarPlanta(@PathVariable int id) {
 		   
 		    Planta planta;
 			try {

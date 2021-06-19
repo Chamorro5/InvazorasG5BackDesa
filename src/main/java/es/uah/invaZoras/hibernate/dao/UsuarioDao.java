@@ -103,17 +103,6 @@ public class UsuarioDao {
 			
 			List<Usuario> usuarios = session.createQuery("FROM Usuario").list();
 			listUsuarios.addAll(usuarios);
-//			for (Iterator iterator = usuarios.iterator(); iterator.hasNext();){
-//				Object it = iterator.next();
-//				Usuario usuario = new Usuario();
-//				usuario.setId_usuario(((Usuario) it).getId_usuario());
-//				usuario.setNombre(((Usuario) it).getNombre());
-//				usuario.setCorreo(((Usuario) it).getCorreo());
-//				usuario.setClave(((Usuario) it).getClave());
-//				usuario.setHabilitado(((Usuario) it).isHabilitado());
-//				usuario.setModerador(((Usuario) it).isModerador());
-//				listUsuarios.add(usuario);
-//			}
 			
 			tx.commit();
 		} catch (HibernateException e) {

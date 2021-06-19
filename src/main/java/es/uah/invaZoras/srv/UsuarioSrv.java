@@ -91,23 +91,6 @@ public class UsuarioSrv {
 		
 		return password.equals(usuario.getClave());
 		
-	}
-
-	private Session crearSession () {
-        
-		if (factory == null) {
-			try {
-				factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-		    } catch (Throwable ex) { 
-		    	System.err.println("Failed to create sessionFactory object." + ex);
-		        throw new ExceptionInInitializerError(ex); 
-		    }
-		}
-		
-		return factory.openSession();
-		
-	}
-	
-	
+	}	
 
 }
