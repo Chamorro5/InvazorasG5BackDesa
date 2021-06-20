@@ -6,10 +6,15 @@
 	   <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 	   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 	 
-	   <!-- Assume testDb Is The Database Name -->
-	   <property name="hibernate.connection.url">jdbc:postgresql://localhost/postgres</property>
+	   <!-- Assume testDb Is The Database Name LOCAL -->
+	   <!--  <property name="hibernate.connection.url">jdbc:postgresql://localhost/postgres</property>
 	   <property name="hibernate.connection.username">postgres</property>
-	   <property name="hibernate.connection.password">1234</property>
+	   <property name="hibernate.connection.password">1234</property> -->
+	   
+	   <!-- Assume testDb Is The Database Name DESA -->
+	   <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-228-99-58.eu-west-1.compute.amazonaws.com:5432/d4br2tlm8r1kjl</property>
+	   <property name="hibernate.connection.username">kybibbmdlxoenr</property>
+	   <property name="hibernate.connection.password">e4b2fbb48283c88705b4235eec676ff0243fa6f467569030ee7cd23af48754e3</property>
 	 
 	   <!-- List of XML Mapping Files -->
 <!-- 	   <mapping resource="usuario.hbm.xml"/>
