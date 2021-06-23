@@ -72,7 +72,7 @@ public class UsuarioSrv {
 	
 	public void actualizarUsuario (Usuario usuario) {
 		
-		UsuarioDao.getInstance().eliminarUsuario(usuario);
+		UsuarioDao.getInstance().actualizarUsuario(usuario);
 		
 	}
 	
